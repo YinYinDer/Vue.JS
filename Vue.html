@@ -1,13 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue</title>
 </head>
+
 <body>
-    <div id="app">{{message}}</div>
+    <div id="app">
+        {{message}}
+        <div>
+            數字:{{count}}
+        </div>
+        <!-- @(簡寫) + 監聽事件名(click) => 點擊事件 -->
+        <button type="button" @click="count++">增加</button>
+        <!-- @(簡寫) + 監聽事件名(click) => 點擊事件 -->
+        <button type="button" @click="addCount()">增加(函式)</button>
+
+    </div>
 
 
 
@@ -16,28 +27,38 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
         const { createApp } = Vue
-        
+
         createApp({
 
             // 資料(宣告資料的分區)
-          data() {
-            // 資料這區一定要return
-            return {
-              message: 'Hello Vue!',
-              array:[],
-              Object:{},
-            }
-          },
+            data() {
+                // 資料這區一定要return
+                return {
+                    message: 'Hello Vue!',
+                    array: [],
+                    Object: {},
+                    count: 0,
+                }
+            },
 
-        //   函示(function)區塊
-          methods: {
-            // 寫 function的地方
-          },
+            //   函示(function)區塊
+            methods: {
+                // 寫 function的地方
+                addCount() {
+                    // 取不到count
+                    // count++;
+
+                    // 要到其他分區取資料，要用this
+                    this.count++;
+
+                },
+            },
 
 
 
         }).mount('#app')
-        
-      </script>
+
+    </script>
 </body>
+
 </html>
